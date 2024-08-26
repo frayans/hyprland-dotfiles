@@ -1,0 +1,150 @@
+@import "styles/mocha.css"; 
+
+* {
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 14px;
+    border-radius: 5px;    
+    margin: 0 3px;
+}
+
+/* Modules left */
+window#waybar {
+    margin: 0 0px;
+    background: transparent;
+    transition-property: background-color;
+    transition-duration: .3s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+tooltip {
+    background-color: @base;
+    border: 1px solid @green;
+    box-shadow: inset 0 -3px @green;
+}
+
+tooltip label {
+    color: @text;
+}
+
+button {
+    border: none;
+}
+
+button:hover {
+    background: inherit;
+    box-shadow: inset 0 -3px @text;
+}
+
+#workspaces button {
+    padding: 0 5px;
+    background-color: transparent;
+    color: @text;
+}
+
+#workspaces button.active{
+    background-color: @base;
+    box-shadow: inset 0 -3px @text;
+}
+
+#window {
+    background-color: @sapphire;
+    color: @base;
+    padding: 0 5px;
+    border: 1px solid @base;
+    box-shadow: inset 0 -3px @base;
+}
+
+/* Modules center */
+#clock {
+    background-color: @lavender;
+    color: @base;
+    padding: 0 5px;
+    border: 1px solid @base;
+    box-shadow: inset 0 -3px @base;
+}
+
+/* Modules right */
+#language {
+    background: @pink;
+    color: @base;
+    padding: 0 5px;
+    border: 1px solid @text;
+    box-shadow: inset 0 -3px @text;
+}
+
+#bluetooth {
+    background: @blue;
+    color: @base;
+    padding: 0 5px;
+    transition-duration: .3s;
+    border: 1px solid @text;
+    box-shadow: inset 0 -3px @text;
+}
+
+#network {
+    background-color: @green;
+    color: @base;
+    padding: 0 5px;
+    transition-duration: .3s;
+    border: 1px solid @base;
+    box-shadow: inset 0 -3px @base;
+}
+
+#network.disconnected {
+    background-color: @red;
+}
+
+#pulseaudio {
+    background-color: @yellow;
+    color: @base;
+    padding: 0 5px;
+    transition-duration: .3s;
+    border: 1px solid @base;
+    box-shadow: inset 0 -3px @base;
+}
+
+#backlight {
+    background-color: @flamingo;
+    color: @base;
+    padding: 0 5px;
+    border: 1px solid @base;
+    box-shadow: inset 0 -3px @base;
+}
+
+#battery {
+    background-color: @rosewater;
+    color: @base;
+    padding: 0 5px;
+    border: 1px solid @base;
+    box-shadow: inset 0 -3px @base;
+}
+
+@keyframes blink {
+    to {
+        background-color: #ffffff;
+        color: #000000;
+    }
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: @base;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: steps(12);
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* If workspaces is the leftmost module, omit left margin */
+.modules-left > widget:first-child > #workspaces {
+    margin-left: 0;
+}
+
+/* If workspaces is the rightmost module, omit right margin */
+.modules-right > widget:last-child > #workspaces {
+    margin-right: 0;
+}

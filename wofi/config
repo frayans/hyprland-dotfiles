@@ -1,0 +1,8 @@
+stylesheet=./style.css
+width=50%
+height=50%
+allow_images=true
+allow_markup=true
+term=kitty
+matching=fuzzy
+insensitive=true

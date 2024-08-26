@@ -1,0 +1,42 @@
+#!/usr/bin/env python3
+
+import subprocess
+
+OPERATIONS = {
+    "1. Shutdown": "systemctl poweroff",
+    "2. Reboot": "systemctl reboot",
+    "3. Exit session": "hyprctl dispatch exit 1",
+}
+
+# return all the ops (newline separated, UTF-8 encoded)
+def list_operations(ops: dict[str, str]) -> str:
+    return "\n".join(ops.keys()).encode("UTF-8")
+    
+# creates a wofi prompt, along with string for dmenu
+def show_wofi(prompt: str, ops: str) -> str:
+    # launches wofi with `prompt`, dmenu mode, and no scrollbar
+    command = f"wofi -p {prompt} -d -b -O alphabetical"
+
+    # PIPE for stdin to receive inputs
+    # PIPE for stdout to receive outputs
+    process = subprocess.Popen(command, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+    stdout, stderr = process.communicate(input=ops)
+    return stdout
+
+# runs the result returned by wofi
+def run_result(result: str) -> bool:
+    if ops := OPERATIONS.get(result):
+        subprocess.Popen(ops, shell=True)
+        return True
+    else:
+        return False
+
+def main() -> bool:
+    ops = list_operations(OPERATIONS)
+    selected = show_wofi("Powermenu", ops)
+    selected_op = selected.decode("UTF-8").rstrip()
+    return run_result(selected_op)
+
+
+if __name__ == "__main__":
+    main()
