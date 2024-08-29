@@ -2,10 +2,15 @@
 
 import subprocess
 
+from pathlib import Path
+
 OPERATIONS = {
-    "1. Shutdown": "systemctl poweroff",
-    "2. Reboot": "systemctl reboot",
-    "3. Exit session": "hyprctl dispatch exit 1",
+    # "󰐥": "systemctl poweroff",
+    # "󰜉": "systemctl reboot",
+    # "󰍃": "hyprctl dispatch exit 1",
+    "Shutdown": "systemctl poweroff",
+    "Reboot": "systemctl reboot",
+    "Exit session": "hyprctl dispatch exit 1",
 }
 
 # return all the ops (newline separated, UTF-8 encoded)
@@ -13,9 +18,9 @@ def list_operations(ops: dict[str, str]) -> str:
     return "\n".join(ops.keys()).encode("UTF-8")
     
 # creates a wofi prompt, along with string for dmenu
-def show_wofi(prompt: str, ops: str) -> str:
-    # launches wofi with `prompt`, dmenu mode, and no scrollbar
-    command = f"wofi -p {prompt} -d -b -O alphabetical"
+def show_wofi(conf_path: Path, ops: str) -> str:
+    conf_path = "~/.config/wofi/scripts/powermenu.conf"
+    command = f"wofi --conf {conf_path}"
 
     # PIPE for stdin to receive inputs
     # PIPE for stdout to receive outputs
@@ -32,11 +37,11 @@ def run_result(result: str) -> bool:
         return False
 
 def main() -> bool:
+    conf_path = Path("~/.config/wofi/scripts/powermenu.conf").expanduser()
     ops = list_operations(OPERATIONS)
-    selected = show_wofi("Powermenu", ops)
+    selected = show_wofi(conf_path, ops)
     selected_op = selected.decode("UTF-8").rstrip()
     return run_result(selected_op)
-
 
 if __name__ == "__main__":
     main()

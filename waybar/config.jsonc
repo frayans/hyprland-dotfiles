@@ -34,6 +34,11 @@
         "format-disconnected": "<span size='13000'>󰖪 </span>Disconnected",
         "tooltip-format-wifi": "Signal Strength: {signalStrength}%"
     },
+    "pulseaudio/slider": {
+        "min": 0,
+        "max": 100,
+        "orientation": "horizontal",
+    },
     "pulseaudio": {
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
@@ -68,14 +73,4 @@
         "on-scroll-up": "brightnessctl s +5%",
         "on-scroll-down": "brightnessctl s 5%-",
     },
-    "cpu": {
-        "format": "{usage}% ",
-        "tooltip": false
-    },
-    "memory": {
-        "format": "{}% "
-    },
-    "hyprland/language": {
-        "format": "{short}",
-    }
 }

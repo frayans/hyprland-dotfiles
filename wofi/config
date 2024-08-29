@@ -4,5 +4,5 @@ height=50%
 allow_images=true
 allow_markup=true
 term=kitty
-matching=fuzzy
+matching=multi-contains
 insensitive=true
