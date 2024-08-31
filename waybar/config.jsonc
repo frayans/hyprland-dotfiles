@@ -3,12 +3,12 @@
     "margin-top": 5,
     "modules-left": ["hyprland/workspaces", "hyprland/window"],
     "modules-center": ["clock"],
-    // too lazy to setup bluetooth
-    // "modules-right": ["bluetooth", "network", "pulseaudio", "backlight", "battery"],
-    "modules-right": ["network", "pulseaudio", "backlight", "battery"],
+    "modules-right": ["network", "bluetooth", "pulseaudio", "backlight", "battery"],
+    // "modules-right": ["network", "pulseaudio", "backlight", "battery"],
 
     "clock": {
-        "format": "<span size='13000' >  </span>{:%a %d %H:%M}",
+        // "format": "<span size='13000' >  </span>{:%a %d %H:%M}",
+        "format-alt": "{:%Y-%m-%d}",
         "tooltip-format": "<big>{:%Y %B}</big>\n<small>{calendar}</small>"
     },
     "battery": {
@@ -34,16 +34,12 @@
         "format-disconnected": "<span size='13000'>󰖪 </span>Disconnected",
         "tooltip-format-wifi": "Signal Strength: {signalStrength}%"
     },
-    "pulseaudio/slider": {
-        "min": 0,
-        "max": 100,
-        "orientation": "horizontal",
-    },
     "pulseaudio": {
         "on-click": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
         "on-click-right": "pavucontrol",
         "format": "<span size='13000'>{icon} </span> {volume}%",
         "format-muted": "<span size='14000'>󰝟 </span> 0%",
+        // "format-icons": ["", "", ""]
         "format-icons": {
             "headphone": "",
             "hands-free": "",
@@ -70,7 +66,6 @@
         // "device": "acpi_video1",
         "format": "{icon} {percent}%",
         "format-icons": ["", "", "", "", "", "", "", "", ""],
-        "on-scroll-up": "brightnessctl s +5%",
-        "on-scroll-down": "brightnessctl s 5%-",
+        "scroll-step": 5,
     },
 }

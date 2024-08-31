@@ -62,17 +62,24 @@ window#waybar.empty #window {
 }
 
 /* modules center */
-#clock {
-  background: @lavender;
-}
 
 /* modules right */
 #network {
   background: @green;
 }
 
+#bluetooth {
+  background: @sapphire;
+}
+
 #pulseaudio {
   background: @yellow;
+}
+
+#pulseaudio.muted {
+  background: @crust;
+  color: @text;
+  box-shadow: inset 0 -0.3em @text;
 }
 
 #backlight {
@@ -82,3 +89,8 @@ window#waybar.empty #window {
 #battery {
   background: @rosewater;
 }
+
+#clock {
+  background: @lavender;
+}
+
